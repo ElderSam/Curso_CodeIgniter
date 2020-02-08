@@ -7,7 +7,7 @@ class Restrict extends CI_Controller{
 	//Construtor
 	public function __construct() {
 		parent::__construct();
-		$this->load->library("session");
+		$this->load->library("session"); //carrega a biblioteca Session
 	}
 
 	//Toda vez que chama Restrict pela URL, executa o index()
