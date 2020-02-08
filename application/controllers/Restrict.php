@@ -13,7 +13,7 @@ class Restrict extends CI_Controller{
 	//Toda vez que chama Restrict pela URL, executa o index()
 	public function index(){
 
-		if ($this->session->userdata("user_id")) {
+		if ($this->session->userdata("user_id")) { //se a variável de sessão está setada (usuário logado)
 			$data = array(
 				"styles" => array(
 					"dataTables.bootstrap.min.css",
@@ -29,27 +29,28 @@ class Restrict extends CI_Controller{
 				"user_id" => $this->session->userdata("user_id")
 			);
 			$this->template->show("restrict.php", $data);
-		} else {
+		} else { //se o usuário não estiver logado
 			$data = array(
 				"scripts" => array(
 					"util.js",
 					"login.js" 
 				)
 			);
-			$this->template->show("login.php", $data);
+			$this->template->show("login.php", $data); //chama a View login
 		}
 
 	}
 
+	// função sair
 	public function logoff() {
-		$this->session->sess_destroy();
-		header("Location: " . base_url() . "restrict");
+		$this->session->sess_destroy(); //destrói todas as variáveis de sessão
+		header("Location: " . base_url() . "restrict"); //vai para a view retrict 
 	}
 	
 	//teste de campos usuário e senha
 	public function ajax_login() {
 
-		if (!$this->input->is_ajax_request()) {
+		if (!$this->input->is_ajax_request()) { //verifica se essa função é do tipo AJAX
 			exit("Nenhum acesso de script direto permitido!");
 		}
 
