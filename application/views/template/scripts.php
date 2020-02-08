@@ -292,5 +292,14 @@ var barChartData = {
 })(jQuery);
 </script>
 <!-- end: Javascript -->
+
+<!-- para chamar Scripts exclusivos de uma determinada View -->
+<?php if(isset($scripts)){
+      foreach($scripts as $script_name){
+        $src = base_url() . "public/asset/js/" . $script_name; ?>
+        <script src="<?=$src?>"></script>
+      <?php }
+    } ?>
+
 </body>
 </html>
