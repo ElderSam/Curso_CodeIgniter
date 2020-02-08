@@ -14,6 +14,7 @@ class Restrict extends CI_Controller{
 	public function index(){
 
 		if ($this->session->userdata("user_id")) { //se a variável de sessão está setada (usuário logado)
+			
 			$data = array(
 				"styles" => array(
 					"dataTables.bootstrap.min.css",
@@ -70,8 +71,10 @@ class Restrict extends CI_Controller{
 			if ($result) { //se existe esse usuário
 				$user_id = $result->user_id;
 				$password_hash = $result->password_hash; //criptografa a senha
+				
 				if (password_verify($password, $password_hash)) { //verifica se a senha digitada é equivalente ao hash gerado
 					$this->session->set_userdata("user_id", $user_id); //seta a variável de sessão user_id com o id do usuário
+
 				} else {
 					$json["status"] = 0; //campo senha incorreto
 				}

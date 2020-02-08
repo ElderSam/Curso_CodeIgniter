@@ -15,9 +15,9 @@ $(function() {
 				if (json["status"] == 1) { //se logou
 					//clearErrors();
 					$("#btn_login").parent().siblings(".help-block").html(loadingImg("Logando...")); //indica para o usuário que o login deu certo
-					//window.location = BASE_URL + "restrict";
+					window.location = BASE_URL + "restrict";
 				} else {
-					showErrors(json["error_list"]);
+					showErrors(json["error_list"]); //se deu erro, mostra lista de erros
 				}
 			},
 			error: function(response) {
