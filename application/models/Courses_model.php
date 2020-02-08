@@ -1,62 +1,51 @@
 <?php
 
-class Users_model extends CI_Model {
+class Courses_model extends CI_Model {
 
 	public function __construct() {
 		parent::__construct();
 		$this->load->database();
 	}
 
-	public function get_user_data($user_login) {
-
-		$this->db
-			->select("user_id, password_hash, user_full_name, user_email")
-			->from("users")
-			->where("user_login", $user_login);
-
-		$result = $this->db->get();
-
-		if ($result->num_rows() > 0) {
-			return $result->row();
-		} else {
-			return NULL;
-		}
+	public function show_courses() {
+		$this->db->from("courses");
+		return $this->db->get()->result_array();
 	}
 
 	public function get_data($id, $select = NULL) {
 		if (!empty($select)) {
 			$this->db->select($select);
 		}
-		$this->db->from("users");
-		$this->db->where("user_id", $id);
+		$this->db->from("courses");
+		$this->db->where("course_id", $id);
 		return $this->db->get();
 	}
 
 	public function insert($data) {
-		$this->db->insert("users", $data);
+		$this->db->insert("courses", $data);
 	}
 
 	public function update($id, $data) {
-		$this->db->where("user_id", $id);
-		$this->db->update("users", $data);
+		$this->db->where("course_id", $id);
+		$this->db->update("courses", $data);
 	}
 
 	public function delete($id) {
-		$this->db->where("user_id", $id);
-		$this->db->delete("users");
+		$this->db->where("course_id", $id);
+		$this->db->delete("courses");
 	}
 
 	public function is_duplicated($field, $value, $id = NULL) {
 		if (!empty($id)) {
-			$this->db->where("user_id <>", $id);
+			$this->db->where("course_id <>", $id);
 		}
-		$this->db->from("users");
+		$this->db->from("courses");
 		$this->db->where($field, $value);
 		return $this->db->get()->num_rows() > 0;
 	}
 
-	var $column_search = array("user_login", "user_full_name", "user_email");
-	var $column_order = array("user_login", "user_full_name", "user_email");
+	var $column_search = array("course_name", "course_description");
+	var $column_order = array("course_name", "", "course_duration");
 
 	private function _get_datatable() {
 
@@ -72,7 +61,7 @@ class Users_model extends CI_Model {
 			$order_dir = $order[0]["dir"];
 		}
 
-		$this->db->from("users");
+		$this->db->from("courses");
 		if (isset($search)) {
 			$first = TRUE;
 			foreach ($this->column_search as $field) {
@@ -114,8 +103,9 @@ class Users_model extends CI_Model {
 
 	public function records_total() {
 
-		$this->db->from("users");
+		$this->db->from("courses");
 		return $this->db->count_all_results();
 
 	}
+
 }

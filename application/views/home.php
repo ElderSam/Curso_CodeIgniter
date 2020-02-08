@@ -1,341 +1,204 @@
+		<!-- Header -->
+		<header>
+			<div class="container">
+				<div class="slider-container">
+					<div class="intro-text">
+						<div class="intro-lead-in">Aprenda com profissionais qualificados</div>
+						<div class="intro-heading">Alfahelix treinamentos</div>
+						<a href="<?php echo base_url(); ?>#portfolio" class="page-scroll btn btn-xl">Conheça nossos cursos</a>
+					</div>
+				</div>
+			</div>
+		</header>
 
-  <!-- start: content -->
-    <div id="content">
-        <div class="panel">
-          <div class="panel-body">
-              <div class="col-md-6 col-sm-12">
-                <h3 class="animated fadeInLeft">Customer Service</h3>
-                <p class="animated fadeInDown"><span class="fa  fa-map-marker"></span> Batavia,Indonesia</p>
+		<section id="about" class="light-bg">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<div class="section-title">
+							<h2>SOBRE</h2>
+							<p>Promovemos cursos de alta qualidade com profissionais graduados, com mestrado e doutorado.</p>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<!-- /.container -->
+		</section>
+		
+		<section class="overlay-dark bg-img1 dark-bg short-section">
+			<div class="container text-center">
+				<div class="row">
+					<div class="col-md-offset-3 col-md-3 mb-sm-30">
+						<div class="counter-item">
+							<a class="page-scroll" href="#course">
+								<h6>Curso</h6>
+							</a>
+						</div>
+					</div>
+					<div class="col-md-3 mb-sm-30">
+						<div class="counter-item">
+							<a class="page-scroll" href="#team">
+								<h6>Equipe</h6>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="course" class="light-bg">
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div class="section-title">
+						<h2>Cursos</h2>
+						<p>Conheça nossa lista de cursos.</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				
+				<?php 
+				if (!empty($courses)) {
+					foreach ($courses as $course) { ?>
+						<div class="col-md-4">
+							<div class="ot-portfolio-item">
+								<figure class="effect-bubba">
+									<img src="<?=base_url().$course["course_img"]?>" alt="img02" class="img-responsive center-block"/>
+									<figcaption>
+										<a href="#" data-toggle="modal" data-target="#course_<?=$course["course_id"]?>"></a>
+									</figcaption>
+								</figure>
+							</div>
+						</div>
 
-                <ul class="nav navbar-nav">
-                    <li><a href="" >Impedit</a></li>
-                    <li><a href="" class="active">Virtute</a></li>
-                    <li><a href="">Euismod</a></li>
-                    <li><a href="">Explicar</a></li>
-                    <li><a href="">Rebum</a></li>
-                </ul>
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <div class="col-md-6 col-sm-6 text-right" style="padding-left:10px;">
-                  <h3 style="color:#DDDDDE;"><span class="fa  fa-map-marker"></span> Banyumas</h3>
-                  <h1 style="margin-top: -10px;color: #ddd;">30<sup>o</sup></h1>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                   <div class="wheather">
-                    <div class="stormy rainy animated pulse infinite">
-                      <div class="shadow">
-                        
-                      </div>
-                    </div>
-                    <div class="sub-wheather">
-                      <div class="thunder">
-                        
-                      </div>
-                      <div class="rain">
-                          <div class="droplet droplet1"></div>
-                          <div class="droplet droplet2"></div>
-                          <div class="droplet droplet3"></div>
-                          <div class="droplet droplet4"></div>
-                          <div class="droplet droplet5"></div>
-                          <div class="droplet droplet6"></div>
-                        </div>
-                    </div>
-                  </div>
-                </div>                   
-            </div>
-          </div>                    
-        </div>
+						<div class="modal fade" id="course_<?=$course["course_id"]?>" tabindex="-1" role="dialog" aria-labelledby="Modal-label-1">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="X"><span aria-hidden="true">&times;</span></button>
+										<h4 class="modal-title" id="Modal-label-1"><?=$course["course_name"]?></h4>
+									</div>
+									
+									<div class="modal-body">
+										<img src="<?=base_url().$course["course_img"]?>" alt="img01" class="img-responsive center-block" />
+										<div class="modal-works"><span>Duração: <?=intval($course["course_duration"])?> (h)</span></div>
+										<p><?=$course["course_description"]?></p>
+									</div>
+									
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+									</div>
+								</div>
+							</div>
+						</div>
+				<?php } // FOREACH
+				} // IF ?>
+				</div>
+			</div><!-- end container -->
+		</section>
+		<section id="team" class="light-bg">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<div class="section-title">
+							<h2>Nossa equipe</h2>
+							<p>Conheça nossa equipe.</p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<?php 
+					if (!empty($team)) {
+						foreach ($team as $member) { ?>
 
-        <div class="col-md-12" style="padding:20px;">
-            <div class="col-md-12 padding-0">
-                <div class="col-md-8 padding-0">
-                    <div class="col-md-12 padding-0">
-                        <div class="col-md-6">
-                            <div class="panel box-v1">
-                              <div class="panel-heading bg-white border-none">
-                                <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
-                                  <h4 class="text-left">Visit</h4>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
-                                   <h4>
-                                   <span class="icon-user icons icon text-right"></span>
-                                   </h4>
-                                </div>
-                              </div>
-                              <div class="panel-body text-center">
-                                <h1>51181,320</h1>
-                                <p>User active</p>
-                                <hr/>
-                              </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="panel box-v1">
-                              <div class="panel-heading bg-white border-none">
-                                <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
-                                  <h4 class="text-left">Orders</h4>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
-                                   <h4>
-                                   <span class="icon-basket-loaded icons icon text-right"></span>
-                                   </h4>
-                                </div>
-                              </div>
-                              <div class="panel-body text-center">
-                                <h1>51181,320</h1>
-                                <p>New Orders</p>
-                                <hr/>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="panel box-v4">
-                            <div class="panel-heading bg-white border-none">
-                              <h4><span class="icon-notebook icons"></span> Agenda</h4>
-                            </div>
-                            <div class="panel-body padding-0">
-                                <div class="col-md-12 col-xs-12 col-md-12 padding-0 box-v4-alert">
-                                    <h2>Checking Your Server!</h2>
-                                    <p>Daily Check on Server status, mostly looking at servers with alerts/warnings</p>
-                                    <b><span class="icon-clock icons"></span> Today at 15:00</b>
-                                </div>
-                                <div class="calendar">
-                                  
-                                </div>
-                            </div>
-                        </div> 
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="col-md-12 padding-0">
-                      <div class="panel box-v2">
-                          <div class="panel-heading padding-0">
-                            <img src="<?php echo base_url(); ?>public/asset/img/bg2.jpg" class="box-v2-cover img-responsive"/>
-                            <div class="box-v2-detail">
-                              <img src="<?php echo base_url(); ?>public/asset/img/avatar.jpg" class="img-responsive"/>
-                              <h4>Akihiko Avaron</h4>
-                            </div>
-                          </div>
-                          <div class="panel-body">
-                            <div class="col-md-12 padding-0 text-center">
-                              <div class="col-md-4 col-sm-4 col-xs-6 padding-0">
-                                  <h3>2.000</h3>
-                                  <p>Post</p>
-                              </div>
-                              <div class="col-md-4 col-sm-4 col-xs-6 padding-0">
-                                  <h3>2.232</h3>
-                                  <p>share</p>
-                              </div>
-                              <div class="col-md-4 col-sm-4 col-xs-12 padding-0">
-                                  <h3>4.320</h3>
-                                  <p>photos</p>
-                              </div>
-                            </div>
-                          </div>
-                      </div>
-                    </div>
+							<div class="col-md-3">
+								<a href="#" data-toggle="modal" data-target="#member_<?=$member["member_id"]?>">
+									<div class="team-item">
+										<div class="team-image">
+											<img src="<?=base_url().$member["member_photo"]?>" class="img-responsive img-circle" alt="author">
+										</div>
+										<div class="team-text">
+											<h3><?=$member["member_name"]?></h3>
+										</div>
+									</div>
+								</a>
+							</div>
 
-                    <div class="col-md-12 padding-0">
-                      <div class="panel box-v3">
-                        <div class="panel-heading bg-white border-none">
-                          <h4>Report</h4>
-                        </div>
-                        <div class="panel-body">
-                            
-                          <div class="media">
-                            <div class="media-left">
-                                <span class="icon-folder icons" style="font-size:2em;"></span>
-                            </div>
-                            <div class="media-body">
-                              <h5 class="media-heading">Document Handling</h5>
-                                <div class="progress progress-mini">
-                                  <div class="progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
-                                    <span class="sr-only">60% Complete</span>
-                                  </div>
-                                </div>
-                            </div>
-                          </div>
-
-                          <div class="media">
-                            <div class="media-left">
-                                <span class="icon-pie-chart icons" style="font-size:2em;"></span>
-                            </div>
-                            <div class="media-body">
-                              <h5 class="media-heading">UI/UX Development</h5>
-                                <div class="progress progress-mini">
-                                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="19" aria-valuemin="0" aria-valuemax="100" style="width: 19%;">
-                                    <span class="sr-only">60% Complete</span>
-                                  </div>
-                                </div>
-                            </div>
-                          </div>
-
-                          <div class="media">
-                            <div class="media-left">
-                                <span class="icon-energy icons" style="font-size:2em;"></span>
-                            </div>
-                            <div class="media-body">
-                              <h5 class="media-heading">Server Optimation</h5>
-                                <div class="progress progress-mini">
-                                  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 55%;">
-                                    <span class="sr-only">60% Complete</span>
-                                  </div>
-                                </div>
-                            </div>
-                          </div>
-
-                          <div class="media">
-                            <div class="media-left">
-                                <span class="icon-user icons" style="font-size:2em;"></span>
-                            </div>
-                            <div class="media-body">
-                              <h5 class="media-heading">User Status</h5>
-                                <div class="progress progress-mini">
-                                  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width:20%;">
-                                    <span class="sr-only">60% Complete</span>
-                                  </div>
-                                </div>
-                            </div>
-                          </div>
-
-                           <div class="media">
-                            <div class="media-left">
-                                <span class="icon-fire icons" style="font-size:2em;"></span>
-                            </div>
-                            <div class="media-body">
-                              <h5 class="media-heading">Firewall Status</h5>
-                                <div class="progress progress-mini">
-                                  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
-                                    <span class="sr-only">60% Complete</span>
-                                  </div>
-                                </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="panel-footer bg-white border-none">
-                            <center>
-                              <input type="button" value="download as pdf" class="btn btn-danger box-shadow-none"/>
-                            </center>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-md-12 padding-0">
-                      <div class="panel bg-light-blue">
-                        <div class="panel-body text-white">
-                           <p class="animated fadeInUp quote">Lorem ipsum dolor sit amet, consectetuer adipiscing elit Ut wisi..."</p>
-                            <div class="col-md-12 padding-0">
-                              <div class="text-left col-md-7 col-xs-12 col-sm-7 padding-0">
-                                <span class="fa fa-twitter fa-2x"></span>
-                                <span>22 May, 2015 via mobile</span>
-                              </div>
-                              <div style="padding-top:8px;" class="text-right col-md-5 col-xs-12 col-sm-5 padding-0">
-                                <span class="fa fa-retweet"></span> 2000
-                                <span class="fa fa-star"></span> 3000
-                              </div>
-                            </div>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-
-          <div class="col-md-12 card-wrap padding-0">
-            <div class="col-md-6">
-                <div class="panel">
-                  <div class="panel-heading bg-white border-none" style="padding:20px;">
-                    <div class="col-md-6 col-sm-6 col-sm-12 text-left">
-                      <h4>Line Chart</h4>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-sm-12">
-                        <div class="mini-onoffswitch pull-right onoffswitch-danger" style="margin-top:10px;">
-                          <input type="checkbox" name="onoffswitch2" class="onoffswitch-checkbox" id="myonoffswitch1" checked>
-                          <label class="onoffswitch-label" for="myonoffswitch1"></label>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="panel-body" style="padding-bottom:50px;">
-                      <div id="canvas-holder1">
-                            <canvas class="line-chart" style="margin-top:30px;height:200px;"></canvas>
-                      </div>
-                      <div class="col-md-12" style="padding-top:20px;">
-                          <div class="col-md-4 col-sm-4 col-xs-6 text-center">
-                              <h2 style="line-height:.4;">$100.21</h2>
-                              <small>Total Laba</small>
-                          </div>
-                          <div class="col-md-4 col-sm-4 col-xs-6 text-center">
-                              <h2 style="line-height:.4;">2000</h2>
-                              <small>Total Barang</small>
-                          </div>
-                          <div class="col-md-4 col-sm-4 col-xs-12 text-center">
-                              <h2 style="line-height:.4;">$291.1</h2>
-                              <small>Total Pengeluaran</small>
-                          </div>
-                      </div>
-                  </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="panel">
-                  <div class="panel-heading bg-white border-none" style="padding:20px;">
-                    <div class="col-md-6 col-sm-6 col-sm-12 text-left">
-                      <h4>Orders</h4>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-sm-12">
-                        <div class="mini-onoffswitch pull-right onoffswitch-primary" style="margin-top:10px;">
-                          <input type="checkbox" name="onoffswitch3" class="onoffswitch-checkbox" id="myonoffswitch3" checked>
-                          <label class="onoffswitch-label" for="myonoffswitch3"></label>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="panel-body" style="padding-bottom:50px;">
-                      <div id="canvas-holder1">
-                        <canvas class="bar-chart"></canvas>
-                      </div>
-                      <div class="col-md-12 padding-0" >
-                        <div class="col-md-4 col-sm-4 hidden-xs" style="padding-top:20px;">
-                          <canvas class="doughnut-chart2"></canvas>
-                        </div>
-                        <div class="col-md-8 col-sm-8 col-xs-12">
-                            <h4>Progress Produksi barang</h4>
-                            <p>Sed hendrerit. Curabitur blandit mollis lacus. Duis leo. Sed libero.fusce commodo aliquam arcu..</p>
-                            <div class="progress progress-mini">
-                              <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
-                                <span class="sr-only">60% Complete</span>
-                              </div>
-                            </div>
-                        </div>
-                      </div>
-                  </div>
-                </div>
-            </div>
-            </div>
-            <div class="col-md-12">
-                <div class="panel bg-green text-white">
-                    <div class="panel-body">
-                      <div class="col-md-8 col-sm-8 col-xs-12">
-                        <div class="maps" style="height:300px;">
-                        </div>
-                      </div>
-                      <div class="col-md-4 col-sm-4 col-xs-12">
-                          <canvas class="doughnut-chart hidden-xs"></canvas>
-                          <div class="col-md-12">
-                            <div class="col-md-6 col-sm-12 col-xs-12">
-                              <h1>72.993</h1>
-                              <p>People</p>
-                            </div>
-                            <div class="col-md-6 col-sm-12 col-xs-12">
-                               <h1>12.000</h1>
-                               <p>Active</p>
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-  <!-- end: content -->
-
+							<div class="modal fade" id="member_<?=$member["member_id"]?>" tabindex="-1" role="dialog" aria-labelledby="Modal-label-1">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											<h4 class="modal-title" id="Modal-label-1"><?=$member["member_name"]?></h4>
+										</div>
+										
+										<div class="modal-body">
+											<img src="<?=base_url().$member["member_photo"]?>" alt="img01" class="img-responsive center-block" />
+											<p><?=$member["member_description"]?></p>
+										</div>
+										
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+										</div>
+									</div>
+								</div>
+							</div>
+					<?php } // FOREACH
+					} // IF ?>
+				</div>
+			</div>
+		</section>
+		<section id="contact">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<div class="section-title">
+							<h2>Contato</h2>
+							<p>Entre em contato conosco por aqui.<br>Tentaremos responder o mais rápido possível</p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					
+					<div class="col-md-12">
+						<form name="sentMessage" id="contactForm" novalidate="">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Seu nome *" id="name" required="" data-validation-required-message="Please enter your name.">
+										<p class="help-block text-danger"></p>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="email" class="form-control" placeholder="Seu email *" id="email" required="" data-validation-required-message="Please enter your email address.">
+										<p class="help-block text-danger"></p>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group">
+										<textarea class="form-control" placeholder="Sua mensagem *" id="message" required="" data-validation-required-message="Please enter a message."></textarea>
+										<p class="help-block text-danger"></p>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<div class="row">
+								<div class="col-lg-12 text-center">
+									<div id="success"></div>
+									<button type="submit" class="btn">Enviar</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+		<p id="back-top">
+			<a href="#top"><i class="fa fa-angle-up"></i></a>
+		</p>
