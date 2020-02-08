@@ -97,7 +97,7 @@ class Restrict extends CI_Controller{
 			exit("Nenhum acesso de script direto permitido!");
 		}
 
-		$config["upload_path"] = "./tmp/"; //upload_path é uma biblioteca do CodeIgniter, neste caso está indicadno qual a pasta para armazenar temporareamente a imagem
+		$config["upload_path"] = "./tmp/"; /* upload_path é uma biblioteca do CodeIgniter, neste caso está indicadno qual a pasta para armazenar temporareamente a imagem. OBS: a pasta /tmp tem que estar na pasta raíz do projeto */
 		$config["allowed_types"] = "gif|png|jpg"; //tipos de arquivos permitidos
 		$config["overwrite"] = TRUE; //caso o arquivo já exista, eu posso reescrever
 

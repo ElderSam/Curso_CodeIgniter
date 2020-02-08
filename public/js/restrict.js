@@ -21,11 +21,11 @@ $(function() {
 		$("#modal_user").modal(); //abre o model de usuário
 	});
 
-	$("#btn_upload_course_img").change(function() {
-		uploadImg($(this), $("#course_img_path"), $("#course_img"));
+	$("#btn_upload_course_img").change(function() { //quando eu mudar a imagem do curso
+		uploadImg($(this), $("#course_img_path"), $("#course_img")); //faz o upload da imagem, passando o caminho e o arquivo
 	});
 
-	$("#btn_upload_member_photo").change(function() {
+	$("#btn_upload_member_photo").change(function() { //quando eu mudar a imagem do membro
 		uploadImg($(this), $("#member_photo_path"), $("#member_photo"));
 	});
 

@@ -112,12 +112,12 @@
           <div class="form-group">
             <label class="col-lg-2 control-label">Imagem</label>
             <div class="col-lg-10">
-              <img id="course_img_path" src="" style="max-height: 400px; max-height: 400px">
+              <img id="course_img_path" src="" style="max-height: 400px; max-height: 400px"> <!-- para mostrar a imagem que deu Upload -->
               <label class="btn btn-block btn-info">
                 <i class="fa fa-upload"></i>&nbsp;&nbsp;Importar imagem
-                <input type="file" id="btn_upload_course_img" accept="image/*" style="display: none;">
+                <input type="file" id="btn_upload_course_img" accept="image/*" style="display: none;"> <!-- para armazenar a imagem -->
               </label>
-              <input id="course_img" name="course_img" hidden>
+              <input id="course_img" name="course_img" hidden> <!-- campo que vai armazenar o caminho da imagem -->
               <span class="help-block"></span>
             </div>
           </div>
