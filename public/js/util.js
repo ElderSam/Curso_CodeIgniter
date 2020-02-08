@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost/alfahelix/";
+const BASE_URL = "http://localhost/Curso_CodeIgniter/";
 
 const DATATABLE_PTBR = {
     "sEmptyTable": "Nenhum registro encontrado",

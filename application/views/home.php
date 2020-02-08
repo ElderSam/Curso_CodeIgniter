@@ -4,7 +4,7 @@
 				<div class="slider-container">
 					<div class="intro-text">
 						<div class="intro-lead-in">Aprenda com profissionais qualificados</div>
-						<div class="intro-heading">Alfahelix treinamentos</div>
+						<div class="intro-heading">Cursos Udemy</div>
 						<a href="<?php echo base_url(); ?>#portfolio" class="page-scroll btn btn-xl">Conheça nossos cursos</a>
 					</div>
 				</div>

@@ -1,14 +1,16 @@
 <?php
-
+//para impedir acesso direto por URL
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Restrict extends CI_Controller{
 
+	//Construtor
 	public function __construct() {
 		parent::__construct();
 		$this->load->library("session");
 	}
 
+	//Toda vez que chama Restrict pela URL, executa o index()
 	public function index(){
 
 		if ($this->session->userdata("user_id")) {
@@ -44,6 +46,7 @@ class Restrict extends CI_Controller{
 		header("Location: " . base_url() . "restrict");
 	}
 	
+	//teste de campos usuário e senha
 	public function ajax_login() {
 
 		if (!$this->input->is_ajax_request()) {
@@ -57,24 +60,24 @@ class Restrict extends CI_Controller{
 		$username = $this->input->post("username");
 		$password = $this->input->post("password");
 
-		if (empty($username)) {
+		if (empty($username)) { //se o campo usuário está vazio
 			$json["status"] = 0;
 			$json["error_list"]["#username"] = "Usuário não pode ser vazio!";
 		} else {
 			$this->load->model("users_model");
 			$result = $this->users_model->get_user_data($username);
-			if ($result) {
+			if ($result) { //se existe esse usuário
 				$user_id = $result->user_id;
-				$password_hash = $result->password_hash;
-				if (password_verify($password, $password_hash)) {
-					$this->session->set_userdata("user_id", $user_id);
+				$password_hash = $result->password_hash; //criptografa a senha
+				if (password_verify($password, $password_hash)) { //verifica se a senha digitada é equivalente ao hash gerado
+					$this->session->set_userdata("user_id", $user_id); //seta a variável de sessão user_id com o id do usuário
 				} else {
-					$json["status"] = 0;
+					$json["status"] = 0; //campo senha incorreto
 				}
 			} else {
-				$json["status"] = 0;
+				$json["status"] = 0; //campo usuário incorreto
 			}
-			if ($json["status"] == 0) {
+			if ($json["status"] == 0) { //algum campo incorreto
 				$json["error_list"]["#btn_login"] = "Usuário e/ou senha incorretos!";
 			}
 		}
