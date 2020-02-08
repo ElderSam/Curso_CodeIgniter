@@ -1,24 +1,24 @@
 $(function() {
 
 	// EXIBIR MODAIS
-	$("#btn_add_course").click(function(){
+	$("#btn_add_course").click(function(){ //quando eu clicar para adicionar um curso
 		clearErrors();
-		$("#form_course")[0].reset();
+		$("#form_course")[0].reset(); 
 		$("#course_img_path").attr("src", "");
-		$("#modal_course").modal();
+		$("#modal_course").modal(); //abre o model de curso
 	});
 
-	$("#btn_add_member").click(function(){
+	$("#btn_add_member").click(function(){ //quando eu clicar para adicionar um membro
 		clearErrors();
 		$("#form_member")[0].reset();
 		$("#member_photo_path").attr("src", "");
-		$("#modal_member").modal();
+		$("#modal_member").modal(); //abre o model de membro
 	});
 
-	$("#btn_add_user").click(function(){
+	$("#btn_add_user").click(function(){ //quando eu clicar para adicionar um usuário
 		clearErrors();
 		$("#form_user")[0].reset();
-		$("#modal_user").modal();
+		$("#modal_user").modal(); //abre o model de usuário
 	});
 
 	$("#btn_upload_course_img").change(function() {

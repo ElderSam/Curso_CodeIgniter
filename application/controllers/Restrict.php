@@ -90,28 +90,31 @@ class Restrict extends CI_Controller{
 
 	}
 
+	//subir imagem
 	public function ajax_import_image() {
 
 		if (!$this->input->is_ajax_request()) {
 			exit("Nenhum acesso de script direto permitido!");
 		}
 
-		$config["upload_path"] = "./tmp/";
-		$config["allowed_types"] = "gif|png|jpg";
-		$config["overwrite"] = TRUE;
+		$config["upload_path"] = "./tmp/"; //upload_path é uma biblioteca do CodeIgniter, neste caso está indicadno qual a pasta para armazenar temporareamente a imagem
+		$config["allowed_types"] = "gif|png|jpg"; //tipos de arquivos permitidos
+		$config["overwrite"] = TRUE; //caso o arquivo já exista, eu posso reescrever
 
 		$this->load->library("upload", $config);
 
 		$json = array();
 		$json["status"] = 1;
 
-		if (!$this->upload->do_upload("image_file")) {
+		if (!$this->upload->do_upload("image_file")) { //Se o upload deu errado. obs: image_file é campo que contém a imagem
 			$json["status"] = 0;
 			$json["error"] = $this->upload->display_errors("","");
-		} else {
-			if ($this->upload->data()["file_size"] <= 1024) {
+
+		} else { //se o upload da imagem deu certo
+			if ($this->upload->data()["file_size"] <= 1024) { //se o tamanho da imagem for <= 1024
 				$file_name = $this->upload->data()["file_name"];
-				$json["img_path"] = base_url() . "tmp/" . $file_name;
+				$json["img_path"] = base_url() . "tmp/" . $file_name; //obs: img_path é o caminho da imagem
+
 			} else {
 				$json["status"] = 0;
 				$json["error"] = "Arquivo não deve ser maior que 1 MB!";
