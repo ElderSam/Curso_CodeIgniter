@@ -44,14 +44,23 @@ class Courses_model extends CI_Model {
 		return $this->db->get()->num_rows() > 0;
 	}
 
-	var $column_search = array("course_name", "course_description");
-	var $column_order = array("course_name", "", "course_duration");
+	/* CAMPOS VIA POST (Para trabalhar como DataTables)
 
-	private function _get_datatable() {
+		$_POST['search']['value'] = Campo para busca
+		$_POST['order'] = [['0, 'asc']]
+			$_POST['order'][0]['column'] = index da coluna
+			$_POST['order'][0]['dir'] = tipo de ordenação (asc, desc)
+		$_POST['length'] = Quantos campos mostrar
+		$_POST['length'] = Qual posição começar
+	*/
+	var $column_search = array("course_name", "course_description"); //colunas pesquisáveis pelo datatables
+	var $column_order = array("course_name", "", "course_duration"); //ordem que vai aparecer (o nome primeiro)
+
+	private function _get_datatable() { //faz a pesquisa no banco de dados
 
 		$search = NULL;
-		if ($this->input->post("search")) {
-			$search = $this->input->post("search")["value"];
+		if ($this->input->post("search")) { //se foi pesquisado algo na caixa de search
+			$search = $this->input->post("search")["value"]; // pega o texto pesquisado
 		}
 		$order_column = NULL;
 		$order_dir = NULL;
@@ -66,8 +75,8 @@ class Courses_model extends CI_Model {
 			$first = TRUE;
 			foreach ($this->column_search as $field) {
 				if ($first) {
-					$this->db->group_start();
-					$this->db->like($field, $search);
+					$this->db->group_start(); //cria um grupo de pesquisa (WHERE ou LIKE). É uma função do CodeIgniter
+					$this->db->like($field, $search); //primeiro caso
 					$first = FALSE;
 				} else {
 					$this->db->or_like($field, $search);
@@ -79,13 +88,13 @@ class Courses_model extends CI_Model {
 		}
 
 		if (isset($order)) {
-			$this->db->order_by($this->column_order[$order_column], $order_dir);
+			$this->db->order_by($this->column_order[$order_column], $order_dir); //Para ordenar os resultados da pesquisa
 		}
 	}
 
-	public function get_datatable() {
+	public function get_datatable() { //retorna resposta da pesquisa
 
-		$length = $this->input->post("length");
+		$length = $this->input->post("length"); //se o length for -1, quer dizer que está retornando todos os registros
 		$start = $this->input->post("start");
 		$this->_get_datatable();
 		if (isset($length) && $length != -1) {
@@ -94,17 +103,17 @@ class Courses_model extends CI_Model {
 		return $this->db->get()->result();
 	}
 
-	public function records_filtered() {
+	public function records_filtered() { //para mostrar a qtd de registros que a pesquisa retornou
 
 		$this->_get_datatable();
-		return $this->db->get()->num_rows();
+		return $this->db->get()->num_rows(); //retorna linhas filtradas
 
 	}
 
 	public function records_total() {
 
 		$this->db->from("courses");
-		return $this->db->count_all_results();
+		return $this->db->count_all_results(); //retorna qtd total existente (função do CodeIgniter)
 
 	}
 
