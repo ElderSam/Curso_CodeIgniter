@@ -10,7 +10,7 @@ class Restrict extends CI_Controller{
 		$this->load->library("session"); //carrega a biblioteca Session
 	}
 
-	//Toda vez que chama Restrict pela URL, executa o index()
+	//Toda vez que chama Restrict pela URL, executa o index() -----------------------------
 	public function index(){
 
 		if ($this->session->userdata("user_id")) { //se a variável de sessão está setada (usuário logado)
@@ -48,7 +48,7 @@ class Restrict extends CI_Controller{
 		header("Location: " . base_url() . "restrict"); //vai para a view retrict 
 	}
 	
-	//teste de campos usuário e senha
+	//teste de campos usuário e senha -------------------------------
 	public function ajax_login() {
 
 		if (!$this->input->is_ajax_request()) { //verifica se essa função é do tipo AJAX
@@ -90,7 +90,7 @@ class Restrict extends CI_Controller{
 
 	}
 
-	//subir imagem
+	//subir imagem -------------------------------------------
 	public function ajax_import_image() {
 
 		if (!$this->input->is_ajax_request()) {
@@ -125,6 +125,7 @@ class Restrict extends CI_Controller{
 		echo json_encode($json);
 	}
 
+	// salva curso ---------------------------------------------------------
 	public function ajax_save_course() {
 
 		if (!$this->input->is_ajax_request()) {
@@ -185,6 +186,7 @@ class Restrict extends CI_Controller{
 		echo json_encode($json);
 	}
 
+	//salva membro ----------------------------------------------------
 	public function ajax_save_member() {
 
 		if (!$this->input->is_ajax_request()) {
@@ -232,6 +234,7 @@ class Restrict extends CI_Controller{
 		echo json_encode($json);
 	}
 
+	// salva usuário ----------------------------------------------
 	public function ajax_save_user() {
 
 		if (!$this->input->is_ajax_request()) {
@@ -303,6 +306,7 @@ class Restrict extends CI_Controller{
 		echo json_encode($json);
 	}
 
+	//Carrega os dados do curso, para mostrar no Modal --------------------------------
 	public function ajax_get_course_data() {
 
 		if (!$this->input->is_ajax_request()) {
@@ -316,7 +320,9 @@ class Restrict extends CI_Controller{
 		$this->load->model("courses_model");
 
 		$course_id = $this->input->post("course_id");
-		$data = $this->courses_model->get_data($course_id)->result_array()[0];
+		$data = $this->courses_model->get_data($course_id)->result_array()[0]; // pega dados do curso e recebe a primeira posição do array de resposta
+		
+		//carrega dados no modal
 		$json["input"]["course_id"] = $data["course_id"];
 		$json["input"]["course_name"] = $data["course_name"];
 		$json["input"]["course_duration"] = $data["course_duration"];
@@ -327,6 +333,7 @@ class Restrict extends CI_Controller{
 		echo json_encode($json);
 	}
 
+	//Carrega os dados do membro, para mostrar no Modal --------------------------------
 	public function ajax_get_member_data() {
 
 		if (!$this->input->is_ajax_request()) {
@@ -341,6 +348,8 @@ class Restrict extends CI_Controller{
 
 		$member_id = $this->input->post("member_id");
 		$data = $this->team_model->get_data($member_id)->result_array()[0];
+
+		//carrega dados no modal
 		$json["input"]["member_id"] = $data["member_id"];
 		$json["input"]["member_name"] = $data["member_name"];
 		$json["input"]["member_description"] = $data["member_description"];
@@ -350,6 +359,7 @@ class Restrict extends CI_Controller{
 		echo json_encode($json);
 	}
 
+	//Carrega os dados do usuário, para mostrar no Modal --------------------------------
 	public function ajax_get_user_data() {
 
 		if (!$this->input->is_ajax_request()) {
@@ -364,6 +374,8 @@ class Restrict extends CI_Controller{
 
 		$user_id = $this->input->post("user_id");
 		$data = $this->users_model->get_data($user_id)->result_array()[0];
+
+		//carrega dados no modal
 		$json["input"]["user_id"] = $data["user_id"];
 		$json["input"]["user_login"] = $data["user_login"];
 		$json["input"]["user_full_name"] = $data["user_full_name"];

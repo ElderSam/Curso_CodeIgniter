@@ -107,7 +107,7 @@ $(function() {
 		return false;
 	});
 
-	$("#btn_your_user").click(function() {
+	$("#btn_your_user").click(function() { //carrega dados do usuário
 
 		$.ajax({
 			type: "POST",
@@ -115,9 +115,9 @@ $(function() {
 			dataType: "json",
 			data: {"user_id": $(this).attr("user_id")},
 			success: function(response) {
-				clearErrors();
-				$("#form_user")[0].reset();
-				$.each(response["input"], function(id, value) {
+				clearErrors(); //limpa erros
+				$("#form_user")[0].reset(); //limpa campos de input
+				$.each(response["input"], function(id, value) { //coloca cada dado no seu devido input
 					$("#"+id).val(value);
 				});
 				$("#modal_user").modal();
