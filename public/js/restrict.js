@@ -10,14 +10,14 @@ $(function() {
 
 	$("#btn_add_member").click(function(){ //quando eu clicar para adicionar um membro
 		clearErrors();
-		$("#form_member")[0].reset();
-		$("#member_photo_path").attr("src", "");
+		$("#form_member")[0].reset(); //apaga todos os campos
+		$("#member_photo_path").attr("src", ""); //apaga a imagem do formulário
 		$("#modal_member").modal(); //abre o model de membro
 	});
 
 	$("#btn_add_user").click(function(){ //quando eu clicar para adicionar um usuário
 		clearErrors();
-		$("#form_user")[0].reset();
+		$("#form_user")[0].reset(); //apaga todos os campos
 		$("#modal_user").modal(); //abre o model de usuário
 	});
 
@@ -29,13 +29,13 @@ $(function() {
 		uploadImg($(this), $("#member_photo_path"), $("#member_photo"));
 	});
 
-	$("#form_course").submit(function() {
+	$("#form_course").submit(function() { //se eu enviar o formulário de cursos
 
 		$.ajax({
 			type: "POST",
 			url: BASE_URL + "restrict/ajax_save_course",
 			dataType: "json",
-			data: $(this).serialize(),
+			data: $(this).serialize(), //pega todos os campos e converte em um formato para mandar via POST
 			beforeSend: function() {
 				clearErrors();
 				$("#btn_save_course").siblings(".help-block").html(loadingImg("Verificando..."));

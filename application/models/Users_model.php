@@ -7,52 +7,56 @@ class Users_model extends CI_Model {
 		$this->load->database();
 	}
 
-	public function get_user_data($user_login) {
+	public function get_user_data($user_login) { //pega dados de usuário
 
 		$this->db
-			->select("user_id, password_hash, user_full_name, user_email")
-			->from("users")
-			->where("user_login", $user_login);
+			->select("user_id, password_hash, user_full_name, user_email") //selecione os campos
+			->from("users") //da tabela users
+			->where("user_login", $user_login); //onde o login for igual ao informado
 
-		$result = $this->db->get();
+		$result = $this->db->get(); //pega o resultado
 
-		if ($result->num_rows() > 0) {
-			return $result->row();
+		if ($result->num_rows() > 0) { //se retornar registros
+			return $result->row(); //retorne as linhas
 		} else {
-			return NULL;
+			return NULL; 
 		}
 	}
 
+	//procurar dados
 	public function get_data($id, $select = NULL) {
 		if (!empty($select)) {
 			$this->db->select($select);
 		}
 		$this->db->from("users");
 		$this->db->where("user_id", $id);
-		return $this->db->get();
+		return $this->db->get(); //retorna os dados
 	}
 
+	//cadastrar
 	public function insert($data) {
 		$this->db->insert("users", $data);
 	}
 
+	//atualizar
 	public function update($id, $data) {
 		$this->db->where("user_id", $id);
 		$this->db->update("users", $data);
 	}
 
+	//excluir
 	public function delete($id) {
 		$this->db->where("user_id", $id);
 		$this->db->delete("users");
 	}
 
-	public function is_duplicated($field, $value, $id = NULL) {
-		if (!empty($id)) {
-			$this->db->where("user_id <>", $id);
+	public function is_duplicated($field, $value, $id = NULL) { //verifica se o login já existe
+		if (!empty($id)) { //se o id não estiver vazio, ou seja, se for passado. Em caso de update
+			$this->db->where("user_id <>", $id); //para não verificar duplicação quando eu atualizo dados quando algum campo que permanece o mesmo
 		}
 		$this->db->from("users");
 		$this->db->where($field, $value);
-		return $this->db->get()->num_rows() > 0;
+		return $this->db->get()->num_rows() > 0; //se tem algum registro, então retorna true
 	}
 
 	var $column_search = array("user_login", "user_full_name", "user_email");

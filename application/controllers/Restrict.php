@@ -156,29 +156,29 @@ class Restrict extends CI_Controller{
 			}
 		}
 
-		if (!empty($json["error_list"])) {
-			$json["status"] = 0;
+		if (!empty($json["error_list"])) { //se tiver algum erro de input (campo) do formulário
+			$json["status"] = 0; //muda o status para 0 (erro)
 		} else {
 
-			if (!empty($data["course_img"])) {
+			if (!empty($data["course_img"])) { //se foi subida uma imagem
 
-				$file_name = basename($data["course_img"]);
-				$old_path = getcwd() . "/tmp/" . $file_name;
-				$new_path = getcwd() . "/public/images/courses/" . $file_name;
-				rename($old_path, $new_path);
+				$file_name = basename($data["course_img"]); //basename pega somente o nome do arquivo dentro
+				$old_path = getcwd() . "/tmp/" . $file_name; //getcw() pega a posição física do meu arquivo
+				$new_path = getcwd() . "/public/images/courses/" . $file_name; 
+				rename($old_path, $new_path); //move a imagem da pasta temporária para o destino final
 
-				$data["course_img"] = "/public/images/courses/" . $file_name;
+				$data["course_img"] = "/public/images/courses/" . $file_name; //pega o caminho da imagem para ir para o BD
 
 			} else {
 				unset($data["course_img"]);
 			}
 
-			if (empty($data["course_id"])) {
+			if (empty($data["course_id"])) { //se o id estiver vazio então está fazendo um cadastro
 				$this->courses_model->insert($data);
-			} else {
+			} else { //se for para dar update
 				$course_id = $data["course_id"];
-				unset($data["course_id"]);
-				$this->courses_model->update($course_id, $data);
+				unset($data["course_id"]); // tira o id do array data, porque o id vai ser passado como parâmetro separado
+				$this->courses_model->update($course_id, $data); //chama a função de update
 			}
 		}
 
@@ -286,6 +286,7 @@ class Restrict extends CI_Controller{
 
 			$data["password_hash"] = password_hash($data["user_password"], PASSWORD_DEFAULT);
 
+			//campos que não irão para o banco de dados
 			unset($data["user_password"]);
 			unset($data["user_password_confirm"]);
 			unset($data["user_email_confirm"]);
