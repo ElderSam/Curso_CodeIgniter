@@ -59,6 +59,7 @@
 			<div class="row">
 				
 				<?php 
+				/* Apresentando os Cursos na página inicial --------------------------------------------------------*/
 				if (!empty($courses)) {
 					foreach ($courses as $course) { ?>
 						<div class="col-md-4">
@@ -111,6 +112,7 @@
 				<div class="row">
 					<?php 
 					if (!empty($team)) {
+						/* Apresentando a Equipe (membros) na página inicial --------------------------------------------------------*/
 						foreach ($team as $member) { ?>
 
 							<div class="col-md-3">

@@ -7,7 +7,7 @@ class Team_model extends CI_Model {
 		$this->load->database();
 	}
 
-	public function show_team() {
+	public function show_team() { //carrega dados do time (membros) em array para mostrar na página inicial
 		$this->db->from("team");
 		return $this->db->get()->result_array();
 	}

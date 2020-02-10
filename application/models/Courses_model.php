@@ -7,7 +7,7 @@ class Courses_model extends CI_Model {
 		$this->load->database();
 	}
 
-	public function show_courses() {
+	public function show_courses() { //carrega dados de curso em array para mostrar na página inicial
 		$this->db->from("courses");
 		return $this->db->get()->result_array();
 	}
