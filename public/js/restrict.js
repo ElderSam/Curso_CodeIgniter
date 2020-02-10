@@ -29,7 +29,8 @@ $(function() {
 		uploadImg($(this), $("#member_photo_path"), $("#member_photo"));
 	});
 
-	$("#form_course").submit(function() { //quando enviar o formulário de cursos -------------------------------
+	/* cadastrar ou atualizar curso --------------------------------------------------------------*/
+	$("#form_course").submit(function() { //quando enviar o formulário de cursos
 
 		$.ajax({
 			type: "POST",
@@ -55,7 +56,8 @@ $(function() {
 		return false;
 	});
 
-	$("#form_member").submit(function() { //quando enviar o formulário de membro -------------------------------
+	/* cadastrar ou atualizar membro --------------------------------------------------------------*/
+	$("#form_member").submit(function() { //quando enviar o formulário de membro 
 
 		$.ajax({
 			type: "POST",
@@ -81,6 +83,7 @@ $(function() {
 		return false;
 	});
 
+	/* cadastrar ou atualizar usuário --------------------------------------------------------------*/
 	$("#form_user").submit(function() { //quando enviar o formulário de usuário -------------------------------
 
 		$.ajax({
@@ -107,7 +110,8 @@ $(function() {
 		return false;
 	});
 
-	$("#btn_your_user").click(function() { //carrega dados do usuário atual (logado) para editar
+	/* carrega dados do usuário logado para editar --------------------------------------------------------------*/
+	$("#btn_your_user").click(function() {
 
 		$.ajax({
 			type: "POST",
@@ -127,6 +131,7 @@ $(function() {
 		return false;
 	});
 
+	/* carrega dados do curso ---------------------------------------------------------------------------*/
 	function active_btn_course() {
 		
 		$(".btn-edit-course").click(function(){
@@ -147,10 +152,11 @@ $(function() {
 			})
 		});
 
+		/* deletar usuário --------------------------------------------------------------*/
 		$(".btn-del-course").click(function(){
 			
 			course_id = $(this);
-			swal({
+			swal({ //aparece o sweet alert para confirmar
 				title: "Atenção!",
 				text: "Deseja deletar esse curso?",
 				type: "warning",
@@ -160,25 +166,26 @@ $(function() {
 				cancelButtontext: "Não",
 				closeOnConfirm: true,
 				closeOnCancel: true,
-			}).then((result) => {
-				if (result.value) {
+			}).then((result) => { 
+				if (result.value) { //se confirmou a exclusão
 					$.ajax({
 						type: "POST",
-						url: BASE_URL + "restrict/ajax_delete_course_data",
+						url: BASE_URL + "restrict/ajax_delete_course_data", //chama o método ajax_delete_course_data do Controller Restrict
 						dataType: "json",
-						data: {"course_id": course_id.attr("course_id")},
+						data: {"course_id": course_id.attr("course_id")}, //manda o id como parâmetro para deletar
 						success: function(response) {
 							swal("Sucesso!", "Ação executada com sucesso", "success");
-							dt_course.ajax.reload();
+							dt_course.ajax.reload(); //recarrega a tabela de cursos
 						}
 					})
 				}
 			})
 
-		});
-	}
+		}); //fim de deletar usuário
+	}  
 
-	var dt_course = $("#dt_courses").DataTable({ //mostra os dados na tabela
+	/* carrega tabela de cursos --------------------------------------------------------------*/
+	var dt_course = $("#dt_courses").DataTable({ 
 		"oLanguage": DATATABLE_PTBR,
 		"autoWidth": false,
 		"processing": true,
@@ -196,6 +203,7 @@ $(function() {
 		}
 	});
 
+	/* carrega dados do curso --------------------------------------------------------------*/
 	function active_btn_member() {
 		
 		$(".btn-edit-member").click(function(){
@@ -216,6 +224,7 @@ $(function() {
 			})
 		});
 
+		/* deletar membro --------------------------------------------------------------*/
 		$(".btn-del-member").click(function(){
 			
 			member_id = $(this);
@@ -244,9 +253,10 @@ $(function() {
 				}
 			})
 
-		});
+		}); //fim de deletar membro
 	}
 
+	/* carrega tabela de times ---------------------------------------------------------------------------*/
 	var dt_member = $("#dt_team").DataTable({
 		"oLanguage": DATATABLE_PTBR,
 		"autoWidth": false,
@@ -265,6 +275,7 @@ $(function() {
 		}
 	});
 
+	/* carrega dados do usuário ---------------------------------------------------------------------------*/
 	function active_btn_user() {
 		
 		$(".btn-edit-user").click(function(){
@@ -284,6 +295,7 @@ $(function() {
 			})
 		});
 
+		/* deletar usuário ---------------------------------------------------------------------------*/
 		$(".btn-del-user").click(function(){
 			
 			user_id = $(this);
@@ -312,9 +324,10 @@ $(function() {
 				}
 			})
 
-		});
+		}); //fim de deletar usuário
 	}
 
+	/* carrega tabela de usuários ---------------------------------------------------------------------------*/
 	var dt_user = $("#dt_users").DataTable({
 		"oLanguage": DATATABLE_PTBR,
 		"autoWidth": false,

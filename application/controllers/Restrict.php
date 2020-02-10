@@ -10,7 +10,7 @@ class Restrict extends CI_Controller{
 		$this->load->library("session"); //carrega a biblioteca Session
 	}
 
-	//Toda vez que chama Restrict pela URL, executa o index() -----------------------------
+	/* Toda vez que chama Restrict pela URL, executa o index() -----------------------------*/
 	public function index(){
 
 		if ($this->session->userdata("user_id")) { //se a variável de sessão está setada (usuário logado)
@@ -48,7 +48,7 @@ class Restrict extends CI_Controller{
 		header("Location: " . base_url() . "restrict"); //vai para a view retrict 
 	}
 	
-	//teste de campos usuário e senha -------------------------------
+	/* teste de campos usuário e senha ---------------------------------------------------------*/
 	public function ajax_login() {
 
 		if (!$this->input->is_ajax_request()) { //verifica se essa função é do tipo AJAX
@@ -90,14 +90,14 @@ class Restrict extends CI_Controller{
 
 	}
 
-	//subir imagem -------------------------------------------
+	/* subir imagem ---------------------------------------------------------------------*/
 	public function ajax_import_image() {
 
 		if (!$this->input->is_ajax_request()) {
 			exit("Nenhum acesso de script direto permitido!");
 		}
 
-		$config["upload_path"] = "./tmp/"; /* upload_path é uma biblioteca do CodeIgniter, neste caso está indicadno qual a pasta para armazenar temporareamente a imagem. OBS: a pasta /tmp tem que estar na pasta raíz do projeto */
+		$config["upload_path"] = "./tmp/"; // upload_path é uma biblioteca do CodeIgniter, neste caso está indicadno qual a pasta para armazenar temporareamente a imagem. OBS: a pasta /tmp tem que estar na pasta raíz do projeto 
 		$config["allowed_types"] = "gif|png|jpg"; //tipos de arquivos permitidos
 		$config["overwrite"] = TRUE; //caso o arquivo já exista, eu posso reescrever
 
@@ -125,7 +125,7 @@ class Restrict extends CI_Controller{
 		echo json_encode($json);
 	}
 
-	// salva curso ---------------------------------------------------------
+	/* salva curso -------------------------------------------------------------------------*/
 	public function ajax_save_course() {
 
 		if (!$this->input->is_ajax_request()) {
@@ -186,7 +186,7 @@ class Restrict extends CI_Controller{
 		echo json_encode($json);
 	}
 
-	//salva membro ----------------------------------------------------
+	/*salva membro -----------------------------------------------------------------------------*/
 	public function ajax_save_member() {
 
 		if (!$this->input->is_ajax_request()) {
@@ -234,7 +234,7 @@ class Restrict extends CI_Controller{
 		echo json_encode($json);
 	}
 
-	// salva usuário ----------------------------------------------
+	/* salva usuário --------------------------------------------------------------*/
 	public function ajax_save_user() {
 
 		if (!$this->input->is_ajax_request()) {
@@ -306,7 +306,7 @@ class Restrict extends CI_Controller{
 		echo json_encode($json);
 	}
 
-	//Carrega os dados do curso, para mostrar no Modal Edit --------------------------------
+	/* Carrega os dados do curso, para mostrar no Modal Edit --------------------------------*/
 	public function ajax_get_course_data() {
 
 		if (!$this->input->is_ajax_request()) {
@@ -333,7 +333,7 @@ class Restrict extends CI_Controller{
 		echo json_encode($json);
 	}
 
-	//Carrega os dados do membro, para mostrar no Modal Edit --------------------------------
+	/* Carrega os dados do membro, para mostrar no Modal Edit --------------------------------*/
 	public function ajax_get_member_data() {
 
 		if (!$this->input->is_ajax_request()) {
@@ -359,7 +359,7 @@ class Restrict extends CI_Controller{
 		echo json_encode($json);
 	}
 
-	//Carrega os dados do usuário, para mostrar no Modal Edit --------------------------------
+	/* Carrega os dados do usuário, para mostrar no Modal Edit --------------------------------*/
 	public function ajax_get_user_data() {
 
 		if (!$this->input->is_ajax_request()) {
@@ -387,6 +387,7 @@ class Restrict extends CI_Controller{
 		echo json_encode($json);
 	}
 
+	/* Deletar curso ----------------------------------------------------------------------*/
 	public function ajax_delete_course_data() {
 
 		if (!$this->input->is_ajax_request()) {
@@ -403,6 +404,7 @@ class Restrict extends CI_Controller{
 		echo json_encode($json);
 	}
 
+	/* Deletar membro ----------------------------------------------------------------------*/
 	public function ajax_delete_member_data() {
 
 		if (!$this->input->is_ajax_request()) {
@@ -419,6 +421,7 @@ class Restrict extends CI_Controller{
 		echo json_encode($json);
 	}
 
+	/* Deletar usuário ----------------------------------------------------------------------*/
 	public function ajax_delete_user_data() {
 
 		if (!$this->input->is_ajax_request()) {
