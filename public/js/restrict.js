@@ -198,8 +198,8 @@ $(function() {
 			{ targets: "no-sort", orderable: false }, //para não ordenar
 			{ targets: "dt-center", className: "dt-center" },
 		],
-		"drawCallback": function() {
-			active_btn_course();
+		"drawCallback": function() { //drawCallback = depois que desenhou, faça o evento abaixo. Executa depois que cadastra ou atualiza
+			active_btn_course(); //ativa os eventos dos botões (editar e deletar)
 		}
 	});
 
