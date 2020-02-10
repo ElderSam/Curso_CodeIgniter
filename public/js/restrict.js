@@ -29,7 +29,7 @@ $(function() {
 		uploadImg($(this), $("#member_photo_path"), $("#member_photo"));
 	});
 
-	$("#form_course").submit(function() { //se eu enviar o formulário de cursos
+	$("#form_course").submit(function() { //quando enviar o formulário de cursos -------------------------------
 
 		$.ajax({
 			type: "POST",
@@ -55,7 +55,7 @@ $(function() {
 		return false;
 	});
 
-	$("#form_member").submit(function() {
+	$("#form_member").submit(function() { //quando enviar o formulário de membro -------------------------------
 
 		$.ajax({
 			type: "POST",
@@ -81,7 +81,7 @@ $(function() {
 		return false;
 	});
 
-	$("#form_user").submit(function() {
+	$("#form_user").submit(function() { //quando enviar o formulário de usuário -------------------------------
 
 		$.ajax({
 			type: "POST",
@@ -107,7 +107,7 @@ $(function() {
 		return false;
 	});
 
-	$("#btn_your_user").click(function() { //carrega dados do usuário
+	$("#btn_your_user").click(function() { //carrega dados do usuário atual (logado) para editar
 
 		$.ajax({
 			type: "POST",
@@ -178,17 +178,17 @@ $(function() {
 		});
 	}
 
-	var dt_course = $("#dt_courses").DataTable({
+	var dt_course = $("#dt_courses").DataTable({ //mostra os dados na tabela
 		"oLanguage": DATATABLE_PTBR,
 		"autoWidth": false,
 		"processing": true,
 		"serverSide": true,
 		"ajax": {
-			"url": BASE_URL + "restrict/ajax_list_course",
+			"url": BASE_URL + "restrict/ajax_list_course", //para chamar o método ajax_list_course do Controller Restrict
 			"type": "POST",
 		},
 		"columnDefs": [
-			{ targets: "no-sort", orderable: false },
+			{ targets: "no-sort", orderable: false }, //para não ordenar
 			{ targets: "dt-center", className: "dt-center" },
 		],
 		"drawCallback": function() {

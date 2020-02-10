@@ -306,7 +306,7 @@ class Restrict extends CI_Controller{
 		echo json_encode($json);
 	}
 
-	//Carrega os dados do curso, para mostrar no Modal --------------------------------
+	//Carrega os dados do curso, para mostrar no Modal Edit --------------------------------
 	public function ajax_get_course_data() {
 
 		if (!$this->input->is_ajax_request()) {
@@ -333,7 +333,7 @@ class Restrict extends CI_Controller{
 		echo json_encode($json);
 	}
 
-	//Carrega os dados do membro, para mostrar no Modal --------------------------------
+	//Carrega os dados do membro, para mostrar no Modal Edit --------------------------------
 	public function ajax_get_member_data() {
 
 		if (!$this->input->is_ajax_request()) {
@@ -359,7 +359,7 @@ class Restrict extends CI_Controller{
 		echo json_encode($json);
 	}
 
-	//Carrega os dados do usuário, para mostrar no Modal --------------------------------
+	//Carrega os dados do usuário, para mostrar no Modal Edit --------------------------------
 	public function ajax_get_user_data() {
 
 		if (!$this->input->is_ajax_request()) {
@@ -442,15 +442,15 @@ class Restrict extends CI_Controller{
 		}
 
 		$this->load->model("courses_model");
-		$courses = $this->courses_model->get_datatable();
+		$courses = $this->courses_model->get_datatable(); //retorna pesquisa
 
 		$data = array();
-		foreach ($courses as $course) {
+		foreach ($courses as $course) {  //para cada linha (registro)
 
 			$row = array();
 			$row[] = $course->course_name;
 
-			if ($course->course_img) {
+			if ($course->course_img) { //se tiver imagem
 				$row[] = '<img src="'.base_url().$course->course_img.'" style="max-height: 100px; max-width: 100px;">';
 			} else {
 				$row[] = "";
@@ -459,6 +459,7 @@ class Restrict extends CI_Controller{
 			$row[] = $course->course_duration;
 			$row[] = '<div class="description">'.$course->course_description.'</div>';
 
+			//botões edit e delete
 			$row[] = '<div style="display: inline-block;">
 						<button class="btn btn-primary btn-edit-course" 
 							course_id="'.$course->course_id.'">
